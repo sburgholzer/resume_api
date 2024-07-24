@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-sdk": "^2.1662.0",
     "serverless": "^3.38.0",
     "serverless-iam-roles-per-function": "^3.2.0"
   },

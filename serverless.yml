@@ -11,19 +11,42 @@ provider:
   stage: dev
   region: us-east-1
 
+custom:
+  tableName:
+    Ref: ResumeTable
+
+functions:
+  importResume:
+    handler: functions/upload-resume.handler
+    events:
+      - http:
+          path: resume
+          method: post
+    environment:
+      DYNAMODB_TABLE_NAME: !Ref ResumeTable
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+          - dynamodb:Query
+        Resource:
+          - !GetAtt ResumeTable.Arn
+          - !Sub "${ResumeTable.Arn}/index/*"
+
+
 resources:
   Resources:
-    ResumesTable:
+    ResumeTable:
       Type: AWS::DynamoDB::Table
       Properties:
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
-          - AttributeName: type
+          - AttributeName: id
             AttributeType: S
-          - AttributeName: id
-            AttributeType: N
+          - AttributeName: sk
+            AttributeType: S
         KeySchema:
-          - AttributeName: type
-            KeyType: HASH
           - AttributeName: id
+            KeyType: HASH
+          - AttributeName: sk
             KeyType: RANGE
