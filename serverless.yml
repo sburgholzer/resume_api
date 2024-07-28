@@ -33,6 +33,26 @@ functions:
           - !GetAtt ResumeTable.Arn
           - !Sub "${ResumeTable.Arn}/index/*"
 
+  getResume:
+    handler: functions/get-full-resume.handler
+    events:
+      - http:
+          path: /resume/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+    environment:
+      DYNAMODB_TABLE_NAME: !Ref ResumeTable
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+        Resource:
+          - !GetAtt ResumeTable.Arn
+          - !Sub "${ResumeTable.Arn}/index/*"
+      
 
 resources:
   Resources:

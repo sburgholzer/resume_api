@@ -146,7 +146,7 @@ async function importToDynamoDB(resume, id){
             startDate: project.startDate,
             summary: project.summary,
             url: project.url,
-            endDate: project
+            endDate: project.endDate
         })
     }
 }

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "aws-sdk": "^2.1662.0",
+    "jsonresume-theme-elegant": "^1.16.1",
     "serverless": "^3.38.0",
     "serverless-iam-roles-per-function": "^3.2.0"
   },
