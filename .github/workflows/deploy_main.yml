@@ -33,5 +33,5 @@ jobs:
       - name: npm ci
         run: npm ci
 
-      - name: deploy to dev
+      - name: deploy to prod
         run: npx sls deploy
