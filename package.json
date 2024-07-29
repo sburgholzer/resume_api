@@ -5,5 +5,8 @@
     "serverless": "^3.38.0",
     "serverless-iam-roles-per-function": "^3.2.0"
   },
-  "name": "resume-cli"
+  "name": "resume-cli",
+  "devDependencies": {
+    "serverless-domain-manager": "^7.3.8"
+  }
 }

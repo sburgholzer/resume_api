@@ -4,16 +4,22 @@ frameworkVersion: "3"
 
 plugins:
   - serverless-iam-roles-per-function
+  - serverless-domain-manager
 
 provider:
   name: aws
   runtime: nodejs18.x
-  stage: dev
+  stage: prod
   region: us-east-1
 
 custom:
   tableName:
     Ref: ResumeTable
+  customDomain:
+    domainName: api.scottburgholzer.tech
+    basePath: resume
+    stage: {$self:provider.stage}
+    createRoute53Record: true
 
 functions:
   importResume:
